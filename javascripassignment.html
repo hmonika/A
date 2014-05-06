@@ -1,0 +1,117 @@
+<html>
+<head>
+<title>my form page</title>
+<script type="text/javascript">
+function vallidation()
+{
+var name='';
+var city='';
+var address='';
+var email='';
+var result=[];
+     var allelem= document.forms["myForm"].elements
+     for(var i=0;i<=3;i++)
+     {
+        if (allelem[i].value==null || allelem[i].value=="")
+        {
+        alert(allelem[i].name+" must be filled out");
+        return false;
+        }
+        else{
+           result +="\n"+allelem[i].name+":"+allelem[i].value;
+        
+        }
+    }
+    
+    var elem=document.forms['myForm'].elements['ra'];
+    len=elem.length-1;
+    chkvalue='';
+    for(i=0; i<=len; i++)
+    {
+        if(elem[i].checked)
+            chkvalue=elem[i].value;
+    }
+    
+    if(chkvalue=='')
+    {
+        alert('Please select the radio button');
+        return false;
+    }
+    else{ 
+        
+       result+="\n Why do you want to learn javascript ="+chkvalue
+    }
+    
+    if(document.myForm.s.selectedIndex==0)
+    {
+        alert("Please select the drop down value");
+        //document.myForm.s.focus();
+        return false;
+    }
+    else{ 
+        
+      result+="\n How did you get to this site? ="+document.myForm.s.value;
+    }
+    
+    var chosen = ""
+    len = document.myForm.chk.length
+    
+        for (i = 0; i <len; i++) {
+            if (document.myForm.chk[i].checked) {
+                chosen = document.myForm.chk[i].value
+            }
+        }
+    
+        if (chosen == "") {
+            alert("Please select the check box");
+            return false;
+        }
+        else {
+            
+            result+="\n How did you get to this site? ="+chosen;
+        }
+        document.getElementById("result").value=result
+        return;
+}
+
+</script>
+<body>
+<form name="myForm" id="id1">
+<table>
+<tr><td>Name</td><td><input type="text" name="name" value=""></td></tr>
+<tr><td>Address</td><td><input type="text" name="address" value=""></td></tr>
+<tr><td>City</td><td><input type="text" name="city" value=""></td></tr>
+<tr><td>Email</td><td><input type="text" name="emailaddress" value=""></td></tr>
+<tr><td>why do you want to learn javascript?</td></tr>
+
+<tr><td><input type="radio" name="ra" value="Dunno">Dunno</td></tr>
+
+<tr><td><input type="radio" name="ra" value="Because my boss told me to">Because my boss told me to</td></tr>
+
+<tr><td><input type="radio" name="ra" value="Generally interested">Generally interested</td></tr>
+
+<tr><td><input type="radio" name="ra" value="It might come usefull">It might come usefull</td></tr>
+
+<tr><td>How did you get to this site?
+
+    <select name="s" >
+    <option value="..select..">.....select.....</option>
+    <option value="Social Sites">Social sites</option>
+    <option value="google">google</option>
+    </select>
+</td>
+</td></tr>
+<tr><td>I'd like additional information about</tr></td>
+<tr><td><input type="checkbox" name="chk" value="oranges">oranges</td></tr>
+<tr><td><input type="checkbox" name="chk" value="potatoes">potatoes</td></tr>
+<tr><td><input type="checkbox" name="chk" value="tomatoes">tomatoes</td></tr>
+<tr><td><input type="checkbox" name="chk" value="blue whales">blue whales</td></tr>
+</table>
+<button type="button" value="submit" onclick="vallidation()">Submit form</button>
+<input type="reset" value="reset">
+<textarea rows="4" cols="50" id="result">
+
+</textarea>
+</form>
+</body>
+</html>
